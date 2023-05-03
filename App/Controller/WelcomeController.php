@@ -4,6 +4,10 @@ namespace App\Controller;
 class WelcomeController extends Controller {
 
     public static function index() {
-        parent::render("Welcome/index.view");
+        echo "deu certo | exibe uma página";
+    }
+
+    public static function form() {
+        echo "deu certo | exibe um formulário";
     }
 }
