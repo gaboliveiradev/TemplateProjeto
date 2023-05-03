@@ -5,27 +5,14 @@ class Router {
     static $rotas = [];
 
     public static function get(array $url) {
+        self::$rotas[] = $url;
+    }
 
-        foreach($url as $r) {
-            //var_dump($url);
-
-            // Verificar se o indice da array informada pelo usuário existe na array $rotas.
-
-            // array_key_exists = verifica se uma key existe em uma determinada array.
-            // array_search = retorna a key com base no valor informado
-
-            /*if(array_key_exists(array_search($r, $url), self::$rotas)) {
-                var_dump(self::$rotas);
-            } else {
-                self::$rotas[array_search($r, $url)] = $r;
-                echo "Rota criada!";
-            }*/
+    public static function router($rota) {
+        foreach(self::$rotas as $r)
+        {
+            if(isset($r[$rota]))
+                call_user_func($r[$rota]);
         }
-
-        array_push(self::$rotas, ["/pessoa" => "PessoaController"]);
-
-        var_dump(self::$rotas);
-
-        //echo self::$rotas["/pessoa"];
     }
 }
