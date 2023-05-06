@@ -4,7 +4,6 @@ namespace vendor\codeflame\Router;
 class Router {
     static $rotas = [];
     static $namespace = "App\\Controller\\";
-    static $indice_rota_default;
 
     public static function get(array $uri) 
     {   
@@ -23,6 +22,11 @@ class Router {
                 break;
             }
         }
+    }
+
+    public static function change_namespace(string $namespace) 
+    {
+        self::$namespace = $namespace;
     }
 
     public static function call_route() 
