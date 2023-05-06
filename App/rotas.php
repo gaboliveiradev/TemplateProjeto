@@ -2,6 +2,8 @@
 
 use vendor\codeflame\Router\Router;
 
-Router::get(["/welcome" => "WelcomeController::index"]);
-Router::get(["/welcome/form" => "WelcomeController::form"]);
-//Router::get(["/welcome/save" => "WelcomeController::save"]);
+Router::get(["uri" => "/welcome", "metodo" => "WelcomeController::index"]);
+Router::get(["uri" => "/", "metodo" => "WelcomeController::default"]);
+Router::get(["uri" => "/welcome/form", "metodo" => "WelcomeController::form"]);
+
+Router::call_route();

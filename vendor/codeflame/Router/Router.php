@@ -2,37 +2,32 @@
 namespace vendor\codeflame\Router;
 
 class Router {
-    static $rotas = [
-        "/welcome" => "WelcomeController::index",
-        "/welcome/form" => "WelcomeController::form"
-    ];
+    static $rotas = [];
+    static $namespace = "App\\Controller\\";
+    static $indice_rota_default;
 
-    public static function get(array $uri) {
-        $parse_uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-        
-        foreach($uri as $r) {
-            $caminho = array_search($r, self::$rotas);
+    public static function get(array $uri) 
+    {   
+        self::$rotas[] = $uri;
+    }
 
-            //echo $r;
-            //echo "<br>";
-            //echo array_search($r, self::$rotas);
-            //echo "<br>";
-            //echo array_key_exists("/welcome/form/teste", self::$rotas);
-
-            /*if(array_key_exists(array_search($r, self::$rotas), self::$rotas)){
-                echo "existe";
-                exit;
-            } else {
-                echo "num existe";
-                exit;
-            }*/
-
+    public static function run($parse_uri) 
+    {
+        for($i = 0; $i < count(self::$rotas); $i++) {
             switch($parse_uri) {
-                case $caminho:
-                    echo self::$rotas[array_search($r, self::$rotas)];
-                    //call_user_func(self::$rotas[array_search($r, self::$rotas)]);
+                case self::$rotas[$i]["uri"]:
+                    call_user_func(self::$namespace . self::$rotas[$i]["metodo"]);
+                break;
+                default:
+                    http_response_code(404);
                 break;
             }
         }
+    }
+
+    public static function call_route() 
+    {
+        $parse_uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+        self::run($parse_uri);
     }
 }
