@@ -12,6 +12,6 @@ class WelcomeController extends Controller {
     }
 
     public static function default() {
-        echo "rota padrão";
+        echo "<br> rota padrão <br>";
     }
 }

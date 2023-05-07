@@ -3,28 +3,37 @@ namespace vendor\codeflame\Router;
 
 class Router {
     static $rotas = [];
+    static $default_rota = [];
     static $namespace = "App\\Controller\\";
 
-    public static function get(array $uri) 
+    public static function get(array $uri)
     {   
         self::$rotas[] = $uri;
     }
 
     public static function run($parse_uri) 
     {
-        for($i = 0; $i < count(self::$rotas); $i++) {
-            switch($parse_uri) {
-                case self::$rotas[$i]["uri"]:
-                    call_user_func(self::$namespace . self::$rotas[$i]["metodo"]);
+        foreach(self::$rotas as $r) 
+        {
+            switch($parse_uri) 
+            {
+                case $r['uri']:
+                    call_user_func(self::$namespace . $r['metodo']);
                 break;
                 default:
                     http_response_code(404);
+                    //call_user_func(self::$namespace . self::$default_rota[0]['metodo']);
                 break;
             }
         }
     }
 
-    public static function change_namespace(string $namespace) 
+    public static function set_default_route(array $uri) 
+    {
+        self::$default_rota[0] = $uri;
+    }
+
+    public static function change_namespace(string $namespace = "App\\Controller\\") 
     {
         self::$namespace = $namespace;
     }
