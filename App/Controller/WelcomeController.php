@@ -29,5 +29,11 @@ class WelcomeController extends Controller {
         } else {
             echo "CPF INVÁLIDO <br> ";
         }
+
+        if(Validate::Email("gabriel@teste.com")) {
+            echo "EMAIL VÁLIDO <br>";
+        } else {
+            echo "EMAIL INVÁLIDO <br> ";
+        }
     }
 }

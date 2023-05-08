@@ -89,4 +89,9 @@ class Validate {
 
         return ($d1 == $resto_d1 && $d2 == $resto_d2) ? true : false;
     }
+
+    public static function Email(string $email) : bool
+    {
+        return (filter_var($email, FILTER_VALIDATE_EMAIL)) ? true : false;
+    }
 }
