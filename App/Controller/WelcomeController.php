@@ -18,16 +18,16 @@ class WelcomeController extends Controller {
     }
 
     public static function validar() {
-        if(Validate::CNPJ("11.111.123.0001-11")) {
+        if(Validate::CNPJ("58.577.114.0001-89")) {
             echo "CNPJ VÁLIDO <br>";
         } else {
             echo "CNPJ INVÁLIDO <br>";
         }
 
-        if(Validate::CPF("11111111111")) {
+        if(Validate::CPF("544.243.098-60")) {
             echo "CPF VÁLIDO <br>";
         } else {
-            echo "CPF INVÁLIDO <br>";
+            echo "CPF INVÁLIDO <br> ";
         }
     }
 }
